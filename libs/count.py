@@ -1,16 +1,28 @@
-from libs.exception import *
+"""
+Module pour la gestion des transactions financières.
+Ce module définit la classe Count pour représenter une transaction financière.
+"""
+
+from libs.exception import ExceptionNotValidParameter
 
 
 class Count:
 
-    def __init__(self, title, amount, date, has_paid, has_to_pay):
-        """ Builds a Count based of the values given in parameter
+    """
+    Cette classe définit un objet Count pour représenter une transaction financière,
+    comprenant des détails tels que le titre, le montant, la date, la personne ayant payé,
+    et la liste des personnes devant rembourser.
+    """
 
-        PRE: title: str - Name of the transaction
-        PRE: amount: float - Price of the count
-        PRE: date: str - Date of the transaction
-        PRE: has_paid: str - Name of the person that paid
-        PRE: has_to_pay: list - List of all peoples that need to reimburse for the count
+    def __init__(self, title, amount, date, has_paid, has_to_pay):
+        """
+        Construit un objet Count en utilisant les valeurs données en paramètre.
+
+        PRÉ : title: str - Nom de la transaction
+        PRÉ : amount: float - Montant de la transaction
+        PRÉ : date: str - Date de la transaction
+        PRÉ : has_paid: str - Nom de la personne qui a payé
+        PRÉ : has_to_pay: list - Liste de toutes les personnes devant rembourser pour la transaction
         """
         if not isfloat(amount) or not isinstance(title, str) or not isinstance(has_paid,
                                                                                str) or not isinstance(

@@ -1,6 +1,14 @@
+"""
+Module pour gérer les calculs de remboursement.
+
+Ce module définit les classes Remb et Total
+pour gérer les propositions de remboursement et les calculs.
+"""
+
+
 from libs.count import Count
 from libs.person import Person
-from libs.exception import *
+from libs.exception import ExceptionNotValidParameter, ExceptionNotInstance
 from creator import isfloat
 
 
@@ -17,6 +25,11 @@ class Remb:
 
 
 class Total:
+    """
+    Classe représentant le calcul total des remboursements.
+
+    Cette classe prend en charge le calcul des remboursements en fonction des transactions financières.
+    """
 
     def __init__(self, count_list, person_list):
         """ """
@@ -47,7 +60,8 @@ class Total:
             ratio[i.name] = 0
 
         for i in self.count_list:
-            for j in i.has_to_pay: ratio[j] -= i.amount / len(i.has_to_pay)
+            for j in i.has_to_pay:
+                ratio[j] -= i.amount / len(i.has_to_pay)
             ratio[i.has_paid] += i.amount
 
         self.sorted_list = sorted(ratio.items(), key=lambda t: t[1])

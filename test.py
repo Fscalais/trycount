@@ -1,8 +1,15 @@
+"""
+Module de test pour vérifier le fonctionnement des classes et fonctions dans le programme TryCount.
+"""
+
 import unittest
+from datetime import date
 from creator import Creator
 from main import InterfaceHandler
-from datetime import date
-from total import *
+from total import Total, Remb
+from libs.exception import ExceptionNotValidParameter, ExceptionNotValidFile, ExceptionNotInstance
+from libs.count import Count
+from libs.person import Person
 
 a = Count("Oskour", 2, str(date.today()), "Justin", ["Flo"])
 b = Count("Bonjour", 25, str(date.today()), "Antoine", ["Tony"])
@@ -72,12 +79,19 @@ class TestCase(unittest.TestCase):
             Creator().delete([], "a.json")
 
     def test_count_init(self):
-        self.assertRaises(ExceptionNotValidParameter, Count, "Oskour", "osk", str(date.today()), "Justin", ["Flo"])
-        self.assertRaises(ExceptionNotValidParameter, Count, "Oskour", None, str(date.today()), "Justin", ["Flo"])
-        self.assertRaises(ExceptionNotValidParameter, Count, "Oskour", -1, str(date.today()), "Justin", ["Flo"])
-        self.assertRaises(ExceptionNotValidParameter, Count, "Oskour", 10, str(date.today()), "Justin", "NotAList")
-        self.assertRaises(ExceptionNotValidParameter, Count, "Oskour", 10, str(date.today()), None, ["Flo"])
-        self.assertRaises(ExceptionNotValidParameter, Count, None, 10, str(date.today()), "Justin", ["Flo"])
+        """
+        title: str - Nom de la transaction
+        amount: float - Montant de la transaction
+        date: str - Date de la transaction
+        has_paid: str - Nom de la personne qui a payé
+        has_to_pay: list - Liste de toutes les personnes devant rembourser pour la transaction
+        """
+        self.assertRaises(ExceptionNotValidParameter, Count, "Titre", "txt", str(date.today()), "Justin", ["Flo"]) #Test avec du texte comme montant
+        self.assertRaises(ExceptionNotValidParameter, Count, "Titre", None, str(date.today()), "Justin", ["Flo"]) #Test avec un montant nul
+        self.assertRaises(ExceptionNotValidParameter, Count, "Titre", -1, str(date.today()), "Justin", ["Flo"]) #Test avec un montant négatif
+        self.assertRaises(ExceptionNotValidParameter, Count, "Titre", 10, str(date.today()), "Justin", "NotAList") #Test si la liste est bien une liste
+        self.assertRaises(ExceptionNotValidParameter, Count, "Titre", 10, str(date.today()), None, ["Flo"]) #Test avec une personne est Nul
+        self.assertRaises(ExceptionNotValidParameter, Count, None, 10, str(date.today()), "Justin", ["Flo"]) #Test avec nom de transaction Nul
 
     def test_count_display(self):
         with self.assertRaises(ExceptionNotValidParameter):

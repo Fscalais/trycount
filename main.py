@@ -1,13 +1,19 @@
+"""
+Module principal pour la gestion des dépenses, des participants, des remboursements, et des soldes.
+"""
 from creator import Creator
 from total import Total
-from libs.exception import *
+from libs.exception import ExceptionNotValidParameter
 
 
 class InterfaceHandler:
+    """Gère l'affichage de l'interface en ligne de commande.
 
+            Cette classe fournit des méthodes pour interagir avec l'utilisateur via la ligne de commande.
+            Elle inclut des fonctionnalités pour gérer les dépenses, les participants, les remboursements et les soldes.
+            """
     def start(self, crea, tot):
-        """  Function that handles the display of the interface
-        """
+        """Fonction qui gère l'affichage de l'interface."""
         if not isinstance(crea, Creator) or not isinstance(tot, Total):
             raise ExceptionNotValidParameter
         while True:
@@ -113,6 +119,3 @@ if __name__ == "__main__":
     a = Creator()
     d = Total(a.count_list, a.person_list)
     InterfaceHandler().start(a, d)
-
-# {"0": ["Bi\u00e8re", 4, "1/12/2022", "Tony", ["Antoine", "Justin"]], "1": ["Bi\u00e8re", 4, "1/12/2022", "Antoine", ["Flo", "Justin"]], "2": ["Bi\u00e8re", 10, "1/12/2022", "Flo", ["Antoine", "Justin"]], "3": ["oskour", 50, "5/12/2022", "Alassane", ["Justin", "Euan"]], "4": ["Remboursement", 34, "6/12/2022", "Justin", ["Alassane"]]}
-# {"0": ["Alassane", "Non sp\u00e9cifi\u00e9", ""], "1": ["Justin", "Non sp\u00e9cifi\u00e9", ""], "2": ["Euan", "Non sp\u00e9cifi\u00e9", ""], "3": ["Tony", "Non sp\u00e9cifi\u00e9", ""], "4": ["Flo", "Non sp\u00e9cifi\u00e9", ""], "5": ["Antoine", "Non sp\u00e9cifi\u00e9", ""]}

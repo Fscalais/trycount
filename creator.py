@@ -1,22 +1,32 @@
+"""
+Module de création et de gestion des données pour Tricount.
+Ce module définit la classe Creator pour gérer la création, la modification et la suppression des données.
+"""
+
 import json
+from datetime import date
 from libs.count import Count
 from libs.person import Person
-from datetime import date
-from libs.exception import *
+from libs.exception import ExceptionNotValidParameter, ExceptionNotValidFile
 
 
 class Creator:
+    """
+    Classe pour la création, la modification et la suppression des données pour Tricount.
 
+    Cette classe permet d'accéder aux fichiers JSON, d'ajouter des valeurs aux listes,
+    de créer un nouveau compte, de supprimer une instance, et d'ajouter une personne.
+    """
     def __init__(self):
         """ Access the json files and add the values to lists
         """
         self.count_list = []
-        with open("payments.json") as file:
+        with open("payments.json", encoding="utf-8") as file:
             data = json.load(file)
         for i in data:
             self.count_list.append(Count(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
         self.person_list = []
-        with open("person.json") as file:
+        with open("person.json", encoding="utf-8") as file:
             data_person = json.load(file)
         for i in data_person:
             self.person_list.append(Person(data_person[i][0], data_person[i][1], data_person[i][2]))
@@ -40,7 +50,7 @@ class Creator:
         for i in lst:
             obj[j] = [i.title, i.amount, i.date, i.has_paid, i.has_to_pay]
             j += 1
-        with open(file, 'w') as json_file:
+        with open(file, 'w', encoding='utf-8') as json_file:
             json_file.write(json.dumps(obj))
 
     def create_count(self):

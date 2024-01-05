@@ -1,7 +1,16 @@
-from libs.exception import *
+"""
+Module pour gérer les informations sur les personnes.
+
+"""
+
+from libs.exception import ExceptionNotValidParameter
 
 
 class Person:
+    """
+    Cette classe définit un objet Person pour représenter une personne,
+    comprenant des détails tels que le nom, l'IBAN et le compte PayPal.
+    """
 
     def __init__(self, name, iban="", paypal=""):
         """ Builds a Count based of the values given in parameter
