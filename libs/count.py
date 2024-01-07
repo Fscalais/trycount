@@ -35,10 +35,10 @@ class Count:
         self.has_to_pay = has_to_pay
 
     def display_count(self, order):
-        """ Function that prints the count
+        """ Fonction qui affiche la transaction
 
-        PRE: order: int - order in the list of counts
-        POST: print of the count
+        PRE : order: int - ordre dans la liste des transactions
+        POST : affiche la transaction
         """
         if not isinstance(order, int):
             raise ExceptionNotValidParameter
@@ -48,9 +48,9 @@ class Count:
 
 
 def isfloat(num):
-    """ Function verifies if an input is float
+    """ Fonction vérifie si une entrée est un nombre décimal
 
-    :return True if the input is float, False if the input is not
+    :return True si l'entrée est un nombre décimal, False sinon
     """
     if num is None:
         return False

@@ -13,7 +13,7 @@ from creator import isfloat
 
 
 class Remb:
-    """ Class representing a reimbursement proposition
+    """ Classe représentant une proposition de remboursement
     """
 
     def __init__(self, amount, has_remb, has_been_remb):
@@ -48,9 +48,9 @@ class Total:
         self.person_list = person_list
 
     def get_remb(self):
-        """ Function calculating every Reimbursement and adds them to the list (remb_list)
+        """ Fonction calculant tous les remboursements et les ajoutant à la liste (remb_list)
 
-        POST: list - remb_liste the list containing instances of Remb
+        POST : liste - remb_liste, la liste contenant des instances de Remb
         """
         positive = []
         negative = []
@@ -88,9 +88,9 @@ class Total:
         return self.remb_list
 
     def display_remb(self):
-        """ Function that's printing the reimbursements
+        """ Fonction qui affiche les remboursements
 
-        POST: prints of every reimbursements
+        POST : affiche tous les remboursements
         """
         count = 0
         for i in self.get_remb():

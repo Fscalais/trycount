@@ -17,7 +17,4 @@ class ExceptionNotValidParameter(Exception):
     pass
 
 class ExceptionNotInstance(Exception):
-    """
-    Exception levée lorsque l'instance n'est pas valide.
-    """
     pass

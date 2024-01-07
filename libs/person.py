@@ -13,11 +13,11 @@ class Person:
     """
 
     def __init__(self, name, iban="", paypal=""):
-        """ Builds a Count based of the values given in parameter
+        """ Construit un objet Count en fonction des valeurs données en paramètre
 
-        PRE: name: str - Name of the person
-        PRE: iban: Not obligatory, if not specified indicates it
-        PRE: paypal: Not obligatory, if not specified indicates it
+        PRE: name: str - Nom de la personne
+        PRE: iban: Non obligatoire
+        PRE: paypal: Non obligatoire
         """
         if not isinstance(name, str):
             raise ExceptionNotValidParameter
@@ -32,10 +32,10 @@ class Person:
             self.paypal = paypal
 
     def display_person(self, order):
-        """ Function that prints the person
+        """ Fonction qui affiche la personne
 
-        PRE: order: int - order in the list of person
-        POST: print of the count
+        PRÉ : order: int - ordre dans la liste des personnes
+        POST : affichage de la personne
         """
         if not isinstance(order, int):
             raise ExceptionNotValidParameter

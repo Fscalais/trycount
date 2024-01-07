@@ -18,8 +18,8 @@ class Creator:
     de créer un nouveau compte, de supprimer une instance, et d'ajouter une personne.
     """
     def __init__(self):
-        """ Access the json files and add the values to lists
-        """
+        """Accéder aux fichiers JSON et ajouter les valeurs aux listes"""
+
         self.count_list = []
         with open("payments.json", encoding="utf-8") as file:
             data = json.load(file)
@@ -32,11 +32,13 @@ class Creator:
             self.person_list.append(Person(data_person[i][0], data_person[i][1], data_person[i][2]))
 
     def write_file(self, lst, file):
-        """ Function that overwrites the json file with the new values
-
-        PRE: lst: list - to be added to a json file
-        PRE: file: sting - json file to be written tot
         """
+        Fonction qui écrase le fichier JSON avec les nouvelles valeurs
+
+        PRÉ : lst : liste - à ajouter à un fichier JSON
+        PRÉ : fichier : chaîne de caractères - fichier JSON à écrire
+        """
+
         if not isinstance(file, str) or not file.rsplit(".", 1)[1] == "json":
             raise ExceptionNotValidFile
         if not isinstance(lst, list):
@@ -54,8 +56,9 @@ class Creator:
             json_file.write(json.dumps(obj))
 
     def create_count(self):
-        """ Function that create a count, ask for thoses values at the user with inputs.
-        Afterwards call write_file to update the file
+        """ 
+        Fonction qui crée une transaction (count), demande à l'utilisateur les valeurs nécessaires avec des entrées utilisateur.
+        Ensuite, appelle la fonction write_file pour mettre à jour le fichier.
         """
         print("Titre")
         title = input(">>>>")
@@ -89,10 +92,11 @@ class Creator:
         self.write_file(self.count_list, "payments.json")
 
     def delete(self, choice, file):
-        """ Function that deletes an instance of count or person in the list
+        """ Fonction qui supprime une instance de compte (count) ou de personne dans la liste
 
-        PRE: choice: int - choice of the instance the user want to delete
-        PRE: file: str - name of the json file where thoses values are stored
+        PRÉ : choice: int - choix de l'instance que l'utilisateur souhaite supprimer
+        PRÉ : file: str - nom du fichier JSON où ces valeurs sont stockées
+
         """
         if not isinstance(choice, int):
             raise ExceptionNotValidParameter
@@ -102,7 +106,7 @@ class Creator:
         self.write_file(self.count_list, file)
 
     def add_person(self):
-        """ Function that asks for the user to input the values to add a person
+        """ Fonction qui demande à l'utilisateur de saisir les valeurs pour ajouter une personne
         """
         print("Nom")
         name = input(">>>>")
@@ -115,9 +119,10 @@ class Creator:
 
 
 def isfloat(num):
-    """ Function verifies if an input is float
+    """ Fonction qui vérifie si une saisie est de type float
 
-    :return True if the input is float, False if the input is not
+    :return True si la saisie est de type flottant, False si ce n'est pas le cas
+
     """
     if num is None:
         return False
