@@ -1,5 +1,5 @@
 """
-Module de test pour vérifier le fonctionnement des classes et fonctions dans le programme TryCount.
+Module de test pour vérifier le fonctionnement des classes et fonctions dans le programme TryCount
 """
 
 import unittest
@@ -19,14 +19,14 @@ f = Total(e.count_list, e.person_list)
 
 
 class TestCase(unittest.TestCase):
+    """
+    Classe de test pour vérifier le fonctionnement des classes et fonctions dans le programme
+    """
 
     def test_count_init(self):
         """
-        title: str - Nom de la transaction
-        amount: float - Montant de la transaction
-        date: str - Date de la transaction
-        has_paid: str - Nom de la personne qui a payé
-        has_to_pay: list - Liste de toutes les personnes devant rembourser pour la transaction
+        Teste le constructeur de la classe Count.
+
         """
         self.assertRaises(ExceptionNotValidParameter, Count, "Titre", "txt", str(date.today()), "Justin", ["Flo"]) #Test avec du texte comme montant
         self.assertRaises(ExceptionNotValidParameter, Count, "Titre", None, str(date.today()), "Justin", ["Flo"]) #Test avec un montant Nul
@@ -35,10 +35,14 @@ class TestCase(unittest.TestCase):
         self.assertRaises(ExceptionNotValidParameter, Count, None, 10, str(date.today()), "Justin", ["Flo"]) #Test avec nom de transaction Nul
 
     def test_count_display(self):
+        """
+        Teste l'initialisation de la classe Count
+
+        """
         with self.assertRaises(ExceptionNotValidParameter):
             a.display_count(None)
         with self.assertRaises(ExceptionNotValidParameter):
-            a.display_count("Oskour")
+            a.display_count("Test")
         with self.assertRaises(ExceptionNotValidParameter):
             a.display_count([])
 
@@ -51,25 +55,41 @@ class TestCase(unittest.TestCase):
         self.assertRaises(ExceptionNotValidParameter, Person, []) #Test si le nom de la personne est une liste vide
 
     def test_person_display(self):
+        """
+        Teste la méthode display_person de la classe Person.
+
+        """
         with self.assertRaises(ExceptionNotValidParameter):
             c.display_person(None)
         with self.assertRaises(ExceptionNotValidParameter):
-            c.display_person("Oskour")
+            c.display_person("Test")
         with self.assertRaises(ExceptionNotValidParameter):
             c.display_person([])
 
     def test_total_init(self):
+        """
+        Teste l'initialisation de la classe Total.
+
+        """
         self.assertRaises(ExceptionNotValidParameter, Total, 2, [c, d]) #Test si la liste Count est un entier
         self.assertRaises(ExceptionNotValidParameter, Total, [a, b], "") #Test si la liste Person est une chaine vide
         self.assertRaises(ExceptionNotValidParameter, Total, None, None) #Test si les 2 arguments sont des None
 
 
     def test_remb(self):
-        self.assertRaises(ExceptionNotValidParameter, Remb, "bjr", "Justin", "Flo")
-        self.assertRaises(ExceptionNotValidParameter, Remb, 30, "Oskour", 25)
+        """
+        Teste la création d'instances de la classe Remb.
+
+        """
+        self.assertRaises(ExceptionNotValidParameter, Remb, "test", "Justin", "Flo")
+        self.assertRaises(ExceptionNotValidParameter, Remb, 30, "Test", 25)
         self.assertRaises(ExceptionNotValidParameter, Remb, None, None, None)
 
     def test_creator_write_file(self):
+        """
+        Teste la méthode write_file de la classe Creator.
+
+        """
         with self.assertRaises(ExceptionNotValidFile):
             Creator().write_file([a, b], "test.png")
         with self.assertRaises(ExceptionNotValidFile):
@@ -94,8 +114,12 @@ class TestCase(unittest.TestCase):
             Creator().write_file([2, 2], "a.json")
 
     def test_creator_delete(self):
+        """
+        Teste la méthode delete de la classe Creator.
+
+        """
         with self.assertRaises(ExceptionNotValidFile):
-            Creator().delete(2, "oskour.png")
+            Creator().delete(2, "test.png")
         with self.assertRaises(ExceptionNotValidFile):
             Creator().delete(2, "bonjour.json.png")
         with self.assertRaises(ExceptionNotValidFile):
